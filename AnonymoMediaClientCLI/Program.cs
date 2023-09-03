@@ -29,6 +29,7 @@ namespace AnonymoMediaClientCLI
                         if (byte_list.Count() > 0)
                         {
                             last_message = Encoding.ASCII.GetString(byte_list.ToArray());
+                            Doer(last_message);
                             //Console.WriteLine(last_message);
                             //output.write(PacketResponse(ToByteArray(byte_list)));
                         }
@@ -55,6 +56,46 @@ namespace AnonymoMediaClientCLI
                 Console.WriteLine(response);
             }
             Console.ReadLine();
+        }
+        static void Doer(string message)
+        {
+            string[] args = message.Split(' ');
+            string method = args[0];
+            switch (method)
+            {
+                case "auth":
+                    {
+                        string auth_str = args[1];
+                        Console.WriteLine($"Auth key recieved: [{auth_str}].");
+                    }
+                    break;
+                case "new_msg":
+                    {
+                        string chat_id = args[1];
+                        string msg_string = args[2];
+                        string sender = args[3];
+                        Console.WriteLine($"New message in chat [{chat_id}] from [{sender}]: '{msg_string}'.");
+                    }
+                    break;
+                case "new_chat":
+                    {
+                        string chat_id = args[1];
+                        Console.WriteLine($"New chat created: [{chat_id}].");
+                    }
+                    break;
+                case "remove_chat":
+                    {
+                        string chat_id = args[1];
+                        Console.WriteLine($"Chat removed: [{chat_id}].");
+                    }
+                    break;
+                case "member_delete":
+                    {
+                        string chat_id = args[1];
+                        Console.WriteLine($"You were deleted from the chat [{chat_id}].");
+                    }
+                    break;
+            }
         }
 
         static string SendString(NetworkStream stream, string msg)
