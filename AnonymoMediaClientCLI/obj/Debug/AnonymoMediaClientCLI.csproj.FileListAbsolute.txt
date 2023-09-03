@@ -1,0 +1,8 @@
+C:\Users\lucky\source\repos\AnonymoMediaClientCLI\AnonymoMediaClientCLI\bin\Debug\AnonymoMediaClientCLI.exe.config
+C:\Users\lucky\source\repos\AnonymoMediaClientCLI\AnonymoMediaClientCLI\bin\Debug\AnonymoMediaClientCLI.exe
+C:\Users\lucky\source\repos\AnonymoMediaClientCLI\AnonymoMediaClientCLI\bin\Debug\AnonymoMediaClientCLI.pdb
+C:\Users\lucky\source\repos\AnonymoMediaClientCLI\AnonymoMediaClientCLI\obj\Debug\AnonymoMediaClientCLI.csproj.AssemblyReference.cache
+C:\Users\lucky\source\repos\AnonymoMediaClientCLI\AnonymoMediaClientCLI\obj\Debug\AnonymoMediaClientCLI.csproj.SuggestedBindingRedirects.cache
+C:\Users\lucky\source\repos\AnonymoMediaClientCLI\AnonymoMediaClientCLI\obj\Debug\AnonymoMediaClientCLI.csproj.CoreCompileInputs.cache
+C:\Users\lucky\source\repos\AnonymoMediaClientCLI\AnonymoMediaClientCLI\obj\Debug\AnonymoMediaClientCLI.exe
+C:\Users\lucky\source\repos\AnonymoMediaClientCLI\AnonymoMediaClientCLI\obj\Debug\AnonymoMediaClientCLI.pdb
