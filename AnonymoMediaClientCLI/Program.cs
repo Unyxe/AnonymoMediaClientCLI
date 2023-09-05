@@ -79,8 +79,10 @@ namespace AnonymoMediaClientCLI
                     break;
                 case "new_chat":
                     {
-                        string chat_id = args[1];
-                        Console.WriteLine($"New chat created: [{chat_id}].");
+                        args = FromBase64(args[1]).Split(' ');
+                        string chat_id = args[0];
+                        string chat_display_name = args[1];
+                        Console.WriteLine($"New chat created: {chat_display_name} [{chat_id}].");
                     }
                     break;
                 case "remove_chat":
@@ -93,6 +95,73 @@ namespace AnonymoMediaClientCLI
                     {
                         string chat_id = args[1];
                         Console.WriteLine($"You were deleted from the chat [{chat_id}].");
+                    }
+                    break;
+                case "chats_response":
+                    {
+                        
+                        args = FromBase64(args[1]).Split('\n');
+                        if (args[0] == "" && args.Length == 1)
+                        {
+                            args = new string[0];
+                        }
+                        Console.WriteLine("_____________YOUR_CHATS_____________");
+                        string[][] chats = new string[args.Length][];
+                        for(int i = 0; i < chats.Length; i++)
+                        {
+                            chats[i] = args[i].Split(' ');
+                        }
+
+                        for(int i = 0; i < chats.Length; i++)
+                        {
+                            string chat_id = chats[i][0];
+                            string chat_display_name = chats[i][1];
+                            Console.WriteLine($"{i+1}: {chat_display_name} [{chat_id}].");
+                        }
+                        Console.WriteLine("____________________________________");
+                    }
+                    break;
+                case "messages_response":
+                    {
+                        string chat_id = args[2];
+                        args = FromBase64(args[1]).Split('\n');
+                        if (args[0] == "" && args.Length == 1)
+                        {
+                            args = new string[0];
+                        }
+                        Console.WriteLine("_____________MESSAGE_HISTORY_____________");
+                        Console.WriteLine("For chat: " + chat_id);
+                        string[][] messages = new string[args.Length][];
+                        for (int i = 0; i < messages.Length; i++)
+                        {
+                            messages[i] = args[i].Split(' ');
+                        }
+
+                        for (int i = 0; i < messages.Length; i++)
+                        {
+                            string sender = messages[i][0];
+                            string msg = FromBase64(messages[i][1]);
+                            Console.WriteLine($"{i + 1}: {sender}: '{msg}'.");
+                        }
+                        Console.WriteLine("_________________________________________");
+                    }
+                    break;
+                case "members_response":
+                    {
+                        string chat_id = args[2];
+                        args = FromBase64(args[1]).Split(' ');
+                        if (args[0] == "" && args.Length == 1)
+                        {
+                            args = new string[0];
+                        }
+                        Console.WriteLine("_____________MEMBER_LIST_____________");
+                        Console.WriteLine("For chat: " + chat_id);
+                        for (int i = 0; i < args.Length; i++)
+                        {
+                            string member_name = args[i];
+                            Console.WriteLine($"{i + 1}: {member_name}");
+                        }
+                        Console.WriteLine("_____________________________________");
                     }
                     break;
             }
@@ -128,6 +197,26 @@ namespace AnonymoMediaClientCLI
                 }
             }
             return response;
+        }
+
+
+        public static string ToBase64(string input)
+        {
+            return Convert.ToBase64String(Encoding.ASCII.GetBytes(input));
+        }
+
+        public static string ToBase64FromByte(byte[] input)
+        {
+            return Convert.ToBase64String(input);
+        }
+        public static byte[] FromBase64ToByte(string input)
+        {
+            return Convert.FromBase64String(input);
+        }
+
+        public static string FromBase64(string input)
+        {
+            return Encoding.Default.GetString(Convert.FromBase64String(input));
         }
     }
 }
